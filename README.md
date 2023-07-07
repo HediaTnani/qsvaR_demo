@@ -23,11 +23,9 @@ variables (qSVs) for `BrainSeq Phase 2`.
 
 ## BSP2 Dataset
 
-The hippocampus formation, though prominently implicated in
-schizophrenia pathogenesis, has been overlooked in large-scale genomics
-efforts in schizophrenic brain. An RNA-seq study has been performed
-previously at Lieber in the hippocampus and dorsolateral prefrontal
-cortex (DLPFC) from 551 individuals (286 with schizophrenia).
+RiboZero RNA-seq data for 900 samples across both the dorsolateral
+prefrontal cortex (DLPFC) and the hippocampus (HIPPO) for 551
+individuals (286 affected by schizophrenia disorder: SCZD).
 Visit [here](https://eqtl.brainseq.org/phase2/) for more details.
 
 ## Load the data
@@ -179,6 +177,7 @@ tpm_tb %>% slice(1:100000) %>%
 tpm_tb %>% slice(1:100000) %>%
   ggplot(aes(x = TPM, fill = Dx)) +
   geom_density(alpha = 0.5) +
+  
   facet_wrap(~ Dx) +
   theme_minimal() +
   labs(title = "Density Plot of TPM for Each Dx", x = "TPM", y = "Density")
@@ -187,9 +186,8 @@ tpm_tb %>% slice(1:100000) %>%
 ## Data normalization
 
 `Transcripts Per Million (TPM)` is a normalization method for RNA-seq
-data that facilitates comparisons both within and between samples. It
-adjusts for gene length and sequencing depth, making it a helpful
-measure for relative gene expression.
+data that facilitates comparisons both within and between samples.
+`It adjusts for gene length and sequencing depth, making it a helpful measure for relative gene expression`.
 
 Here is the formula for calculating TPM:
 
@@ -364,6 +362,10 @@ Heatmap(correlation_matrix,
                                     )
 )
 ```
+
+The **`cell_fun`** function customizes the display of each cell in the
+heatmap by adding the correlation value as text inside the cell with a
+specific format and font size.
 
 From the heatmap we can see that there’s a strong positive correlation
 between `mitoMapped` and `totalAssignedGene`. One of the strategies to
@@ -785,3 +787,8 @@ such confounding factors and ensure a more accurate representation of
 the biological differences in gene expression.
 
 ## References
+
+1.  https://bioconductor.org/packages/release/workflows/vignettes/RNAseq123/inst/doc/designmatrices.html
+2.  https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7873980/
+3.  https://bioconductor.org/help/course-materials/2019/BSS2019/04_Practical_CoreApproachesInBioconductor.html
+4.  https://stemangiola.github.io/tidySummarizedExperiment/
