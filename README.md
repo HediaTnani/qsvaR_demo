@@ -177,7 +177,6 @@ tpm_tb %>% slice(1:100000) %>%
 tpm_tb %>% slice(1:100000) %>%
   ggplot(aes(x = TPM, fill = Dx)) +
   geom_density(alpha = 0.5) +
-  
   facet_wrap(~ Dx) +
   theme_minimal() +
   labs(title = "Density Plot of TPM for Each Dx", x = "TPM", y = "Density")
